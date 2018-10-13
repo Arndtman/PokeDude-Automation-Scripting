@@ -18,7 +18,7 @@ Included in this suite:
       
 
 # DON'T BE A DICK PUBLIC LICENSE
-http://dbad-license.org/
+Source: http://dbad-license.org/
 > Version 1.1, December 2016
 
 > Copyright (C) [2018] [Alex Arndt]
