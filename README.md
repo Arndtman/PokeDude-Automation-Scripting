@@ -10,7 +10,7 @@ Included in this suite:
     + 252 MAXED HP stats 
     + more soon....
     
-2. 100% AFKable combat bot! 
+2. 100% AFKable combat/leveling bot! 
     + Any zone or mob desired 
     
 3. 90% AFKable NPC GOLD FARM ROUTES
