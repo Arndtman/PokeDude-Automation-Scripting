@@ -9,7 +9,7 @@ Included in this suite:
   + more soon....
     
 2. 100% AFKable combat bot! 
-   +any zone desired 
+   + any zone or mob desired 
     
 3. NPC GOLD FARM ROUTES
   + OLDMANFARM1 ~40k per route
