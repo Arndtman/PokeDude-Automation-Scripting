@@ -5,11 +5,11 @@ Included in this suite:
 
  1. 100% AFKable EV Training!
  
- +Speed stats 
+ + Speed stats 
  
- +HP stats 
+ + HP stats 
  
- +more soon....
+ + more soon....
     
   2. 100% AFKable combat bot! 
     any zone desired 
