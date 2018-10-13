@@ -1,7 +1,21 @@
 # PokeDude-Automation-Scripting
 Automation, Scripting, and Basic AI development for an Online Multiplayer Pokemon game I enjoy. 
 
-This suite is protected under software license. 
+This suite is protected under software license stated clearly below. 
+
+Included in this suite: 
+
+1. 100% AFKable EV Training! (Each stat is zone and mob dependent)
+    + 252 MAXED Speed stats 
+    + 252 MAXED HP stats 
+    + more soon....
+    
+2. 100% AFKable combat bot! 
+    + Any zone or mob desired 
+    
+3. 90% AFKable NPC GOLD FARM ROUTES
+    + OLDMANFARM1 ~40k per route
+      
 
 # DON'T BE A DICK PUBLIC LICENSE
 http://dbad-license.org/
@@ -30,16 +44,4 @@ creator(s) a pint.
 3. Code is provided with no warranty. Using somebody else's code and bitching when it goes wrong makes
 you a DONKEY dick. Fix the problem yourself. A non-dick would submit the fix back.
 
-Included in this suite: 
 
-1. 100% AFKable EV Training! (Each stat is zone and mob dependent)
-    + 252 MAXED Speed stats 
-    + 252 MAXED HP stats 
-    + more soon....
-    
-2. 100% AFKable combat bot! 
-    + Any zone or mob desired 
-    
-3. 90% AFKable NPC GOLD FARM ROUTES
-    + OLDMANFARM1 ~40k per route
-      
