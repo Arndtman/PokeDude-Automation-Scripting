@@ -4,8 +4,8 @@ Automation, Scripting, and Basic AI development for an Online Multiplayer Pokemo
 Included in this suite: 
 
 1. 100% AFKable EV Training! (Each stat is zone and mob dependent)
-    + Speed stats 
-    + HP stats 
+    + 252 MAXED Speed stats 
+    + 252 MAXED HP stats 
     + more soon....
     
 2. 100% AFKable combat bot! 
