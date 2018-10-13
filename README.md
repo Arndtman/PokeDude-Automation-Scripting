@@ -1,2 +1,2 @@
 # PokeDude-Automation-Scripting
-Automation, Scripting, Basic AI development for a Pokemon game I enjoy. 
+Automation, Scripting, and Basic AI development for an Online Multiplayer Pokemon game I enjoy. 
