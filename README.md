@@ -1,7 +1,7 @@
 # PokeDude-Automation-Scripting
 Automation, Scripting, and Basic AI development for an Online Multiplayer Pokemon game I enjoy. 
 
-This suite is protected under software license stated clearly below. 
+This suite is protected under the software license stated clearly below. 
 
 Included in this suite: 
 
