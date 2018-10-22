@@ -8,6 +8,7 @@ Included in this suite:
 1. 100% AFKable EV Training! (Each stat is zone and mob dependent)
     + 252 MAXED Speed stats 
     + 252 MAXED HP stats 
+    + 252 MAXED Sp. Atk stats
     + more soon....
     
 2. 100% AFKable combat/leveling bot! 
