@@ -94,6 +94,7 @@ return
 
 SpdEVHandle(){
 	global Img_Path
+	Gui, 2:destroy
 
 	GuiControl, 1:, OutPut, Spd EV Trainer Selected
 	height := A_ScreenHeight-500
@@ -109,6 +110,7 @@ return
 
 SpAtkEVHandle(){
 	global Img_Path
+	Gui, 2:destroy
 	
 	GuiControl, 1:, OutPut, Sp. Atk EV Trainer Selected
 	height := A_ScreenHeight-500
@@ -124,6 +126,7 @@ return
 
 HPEVHandle(){
 	global Img_Path
+	Gui, 2:destroy
 
 	GuiControl, 1:, OutPut, HP EV Trainer Selected
 	height := A_ScreenHeight-500
