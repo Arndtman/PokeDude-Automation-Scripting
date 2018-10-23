@@ -1,7 +1,10 @@
 ﻿
 Img_Path = %A_WorkingDir%\Images\
+Menu, tray, Icon , %Img_Path%icon1.ico, 1, 1
 
 Gui 1:Add, Picture, x0 y0 w250 h170, %Img_Path%LogoScale.png
+
+Gui, Font, s8, Tahoma  
 
 ;Column 1
 Gui 1:Add, Button, w110 y10 x250 y10 gB1Inst, NPCFarm1
@@ -15,17 +18,20 @@ Gui 1:Add, Button, w110 y+10 gHPInst, Def EV Trainer
 Gui 1:Add, Button, w110 y+10 gHPInst, Sp. Def EV Trainer
 Gui 1:Add, Button, w110 y+10 gHPInst, Atk EV Trainer
 
+Gui, Font, s10, Verdana
 Gui 1:Add, Text, x10 y170 , What is the Bot Doing?:
+
+Gui, Font, s8, Tahoma  
 Gui 1:Add, Edit, vOutPut w335, Words, Man
 
+Gui, Font, s10, Verdana
 Gui 1:Add, Text, x10, Please Read Instructions.txt Before Starting Bot
 Gui 1:Add, CheckBox, x10 vNoCache Checked, Debug Enabled
 
-Gui 1:Add, Button, x+200 yp-10 w50 gQuitter, Exit ()
-Gui 1:Add, Button,,Pause
+Gui 1:Add, Button, x+300 yp-10 w50 gQuitter, Exit
 
 Gui 1:Color, 666564
-Gui 1:Show
+Gui 1:Show,, PokeDude
 
 Return
 
@@ -33,7 +39,7 @@ GuiEscape:
 GuiClose:
 Quitter:
 ;ExitApp
-GuiControl, 1:, OutPut, "New Window Test"
+GuiControl, 1:, OutPut, "Exited Window"
 sleep 300
 Gui, Cancel
 return
@@ -52,7 +58,7 @@ return
 CombatInst:
 Gui, Submit, NoHide
 MsgBox This is the Universal Combat Bot. It fights for you whenever you enter combat automatically. 
-+ Press Ok to Start 
++ Press Ok to Start
 return
 
 SdpInst:
@@ -71,8 +77,6 @@ HPEVHandle()
 return
 
 
-
-
 SpdEVHandle(){
 	global Img_Path
 	GuiControl, 1:, OutPut, Spd EV Trainer Selected
@@ -83,7 +87,7 @@ SpdEVHandle(){
 	Gui 2:Add, Button, x0 y250 w80 gStarter, Start_Bot ()
 	Gui 2:Add, Button, x+10 y250 w50 gQuitter, Exit ()
 	Gui 2:Color, FFA500
-	Gui 2:Show, x%width% y%height%
+	Gui 2:Show, x%width% y%height%, Spd EV Instructions
 return
 }
 
@@ -97,7 +101,7 @@ SpAtkEVHandle(){
 	Gui 2:Add, Button, x0 y250 w80 gStarter, Start_Bot ()
 	Gui 2:Add, Button, x+10 y250 w50 gQuitter, Exit ()
 	Gui 2:Color, FFA500
-	Gui 2:Show, x%width% y%height%
+	Gui 2:Show, x%width% y%height%, Sp. Atk EV Instructions
 return
 }
 
@@ -111,7 +115,7 @@ HPEVHandle(){
 	Gui 2:Add, Button, x0 y250 w80 gStarter, Start_Bot ()
 	Gui 2:Add, Button, x+10 y250 w50 gQuitter, Exit ()
 	Gui 2:Color, FFA500
-	Gui 2:Show, x%width% y%height%
+	Gui 2:Show, x%width% y%height%, HP EV Instructions
 return
 }
 
@@ -129,7 +133,5 @@ myTest:
 sleep 500
 WinActivate, PokeMMO
 GuiControl,1:, OutPut, "Scripts Missing"
-
-
-
 return
+
