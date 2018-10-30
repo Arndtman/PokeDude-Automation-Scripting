@@ -5,7 +5,7 @@ DetectHiddenWindows, On
 Img_Path = %A_WorkingDir%\Images\
 Menu, tray, Icon , %Img_Path%icon1.ico, 1, 1
 
-height := A_ScreenHeight-850
+height := A_ScreenHeight-420
 width := A_ScreenWidth-650
 
 Gui 1:Add, Picture, x0 y0 w250 h170, %Img_Path%LogoScale.png
@@ -197,10 +197,10 @@ SpdEVTrainer:
 		send {Down down} 
 		sleep 4600
 		send {Down up} 
-		gosub SS
+		gosub SS_Spd
 	}
 
-	SS: 
+	SS_Spd: 
 	{
 		GuiControl, 1:, OutPut, Sweet Scent Start
 		Loop
@@ -214,7 +214,7 @@ SpdEVTrainer:
 				ImageSearch, FoundX, FoundY, 150, 140, 1280, 600, *90 %Img_Path_Spd%p.png
 				if ErrorLevel = 0
 				{
-					gosub Battle
+					gosub Battle_Spd
 				}
 				GuiControl, 1:, OutPut, Out of Battle
 				sleep 1000
@@ -229,23 +229,24 @@ SpdEVTrainer:
 					sleep 1000
 					mouseclick, left, %FoundX%, %FoundY%, 1, 0
 					ImageSearch, FoundX, FoundY, 1000, 250, 1290, 800, *90 %Img_Path_Spd%ss.png
-						If ErrorLevel = 1
-						{
-							GuiControl, 1:, OutPut, SS FAIL
-							sleep 1000
-						} else if ErrorLevel = 0 
-						{
-							GuiControl, 1:, OutPut, SS OK
-							mouseclick, left, %FoundX%, %FoundY%, 1, 0
-							sleep 1000
-							send {Z down}
-							sleep 100
-							send {Z up}  
-							sleep 3000
-							GuiControl, 1:, OutPut, Entering Battle
-							sleep 300
-							gosub Battle
-						}
+					If ErrorLevel = 1
+					{
+						GuiControl, 1:, OutPut, SS FAIL
+						Counter += 1
+						sleep 1000
+					} else if ErrorLevel = 0 
+					{
+						GuiControl, 1:, OutPut, SS OK
+						mouseclick, left, %FoundX%, %FoundY%, 1, 0
+						sleep 1000
+						send {Z down}
+						sleep 100
+						send {Z up}  
+						sleep 3000
+						GuiControl, 1:, OutPut, Entering Battle
+						sleep 300
+						gosub Battle_Spd
+					}
 				}
 				Counter -= 1
 			} else {
@@ -344,7 +345,7 @@ SpdEVTrainer:
 		return
 	}
 
-	SpdTalk:
+	Talk_Spd:
 	{
 		sleep 100
 		Loop 7
@@ -357,7 +358,7 @@ SpdEVTrainer:
 		return
 	}
 
-	Fight:
+	Fight_Spd:
 	{
 		GuiControl, 1:, OutPut, Fight Begin
 		PixelGetColor, x2, 115, 270
@@ -365,7 +366,7 @@ SpdEVTrainer:
 		{
 			GuiControl, 1:, OutPut, Move Loop
 			sleep 3000
-			gosub SpdTalk
+			gosub Talk_Spd
 			sleep 3000
 			GuiControl, 1:, OutPut, Move Used: Atk Sleep End
 			sleep 2000
@@ -376,7 +377,7 @@ SpdEVTrainer:
 		return
 	}
 
-	Battle:
+	Battle_Spd:
 	{ 
 		GuiControl, 1:, OutPut, Battle Start 
 		sleep 3000
@@ -393,7 +394,7 @@ SpdEVTrainer:
 			{
 				GuiControl, 1:, OutPut, Fight
 				sleep 1000
-				gosub Fight
+				gosub Fight_Spd
 				break
 			}
 		}
@@ -422,10 +423,202 @@ The script will surely fail if these conditions are not met.
 
 SpAtkEVTrainer: 
 {
+	Img_Path_SpAtk = %A_WorkingDir%\Images\EV\
 	Gui, Submit, NoHide
 	sleep 500
+	
 	WinActivate, PokeMMO
-	GuiControl, 1:, OutPut, "Sp. Atk Scripts Missing"
+	GuiControl, 1:, OutPut, "Sp, Atk Scripts Testing: Set PokeMMO as Main Window Now (3 sec..)"
+	sleep 3000
+	
+	Counter = 4
+		
+	
+	SS_SpAtk: 
+	{
+		GuiControl, 1:, OutPut, Sweet Scent Start
+		Loop
+		{
+			if Counter > 0 
+			{ 
+				GuiControl, 1:, OutPut, SS uses left %Counter%
+				sleep 1000
+				GuiControl, 1:, OutPut, Checking Battle State
+				sleep 1000
+				ImageSearch, FoundX, FoundY, 150, 140, 1280, 600, *90 %Img_Path_SpAtk%p.png
+				if ErrorLevel = 0
+				{
+					gosub Battle_SpAtk
+				}
+				GuiControl, 1:, OutPut, Out of Battle
+				sleep 1000
+				ImageSearch, FoundX, FoundY, 1150, 250, 1290, 600, *90 %Img_Path_SpAtk%bs.png
+				If ErrorLevel = 1
+				{
+					GuiControl, 1:, OutPut, No BellSprout found
+					sleep 1000
+				} else if ErrorLevel = 0 
+				{
+					GuiControl, 1:, OutPut, BellSprout Found
+					sleep 1000
+					mouseclick, left, %FoundX%, %FoundY%, 1, 0
+					ImageSearch, FoundX, FoundY, 1000, 250, 1290, 800, *90 %Img_Path_SpAtk%ss.png
+					If ErrorLevel = 1
+					{
+						GuiControl, 1:, OutPut, SS FAIL
+						Counter += 1
+						sleep 1000
+					} else if ErrorLevel = 0 
+					{
+						GuiControl, 1:, OutPut, SS OK
+						mouseclick, left, %FoundX%, %FoundY%, 1, 0
+						sleep 1000
+						send {Z down}
+						sleep 100
+						send {Z up}  
+						GuiControl, 1:, OutPut, Entering Battle
+						sleep 300
+						gosub Battle_SpAtk
+					}	
+				}
+				Counter -= 1
+			} else {
+				GuiControl, 1:, OutPut, SS out of PP: Healing
+				Counter = 4
+				sleep 1000
+				gosub Heal
+				sleep 2000
+			}
+		}
+	}
+	
+	Heal: 
+	{
+		Loop 2 { 
+			GuiControl, 1:, OutPut, Using Leppa
+			sleep 300
+			send {B down} {B up}
+			sleep 300
+
+			ImageSearch, FoundX, FoundY, 100, 250, 1290, 800, *90 %Img_Path_SpAtk%berry.png
+			If ErrorLevel = 1
+			{
+				GuiControl, 1:, OutPut, Berry's tab not found
+				sleep 1000
+			} else if ErrorLevel = 0 
+			{
+				GuiControl, 1:, OutPut, In berry bag LF leppa
+				sleep 1000
+				mouseclick, left, %FoundX%, %FoundY%, 1, 0
+				sleep 1000
+				ImageSearch, FoundX, FoundY, 100, 250, 1290, 800, *90 %Img_Path_SpAtk%leppa.png
+				If ErrorLevel = 1
+				{
+					GuiControl, 1:, OutPut, Leppa not found
+					sleep 1000
+				} else if ErrorLevel = 0 
+				{
+					GuiControl, 1:, OutPut, Leppa Found
+					sleep 1000
+					mouseclick, left, %FoundX%, %FoundY%, 1, 0
+					sleep 1000
+					sleep 300
+					send {B down} {B up}
+					sleep 300
+					ImageSearch, FoundX, FoundY, 100, 250, 1290, 800, *90 %Img_Path_SpAtk%bs2.png
+					If ErrorLevel = 1
+					{
+						GuiControl, 1:, OutPut, Bellsprout not found
+						sleep 1000
+					} else if ErrorLevel = 0 
+					{
+						GuiControl, 1:, OutPut, BS found, giving PP
+						sleep 1000
+						mouseclick, left, %FoundX%, %FoundY%, 1, 0
+						sleep 300
+						ImageSearch, FoundX, FoundY, 100, 250, 1290, 800, *90 %Img_Path_SpAtk%ss2.png
+						If ErrorLevel = 1
+						{
+							GuiControl, 1:, OutPut, Sweet Scent Not Found
+							sleep 1000
+						} else if ErrorLevel = 0 
+						{
+							GuiControl, 1:, OutPut, Sweet Scent Found
+							sleep 1000
+							mouseclick, left, %FoundX%, %FoundY%, 1, 0
+							sleep 300
+						}
+					}
+				}
+			}
+			GuiControl, 1:, OutPut, Leppa Used
+			sleep 500
+			send {ESC down} {ESC up} 
+			sleep 500
+		}
+	GuiControl, 1:, OutPut, PP Restore End
+	return
+	}
+	
+	Talk_SpAtk:
+	{
+		sleep 100
+		Loop 7
+		{
+			send {Z down}
+			sleep 300
+			send {Z up}
+		}
+		sleep 100
+		return
+	}
+
+	Fight_SpAtk:
+	{
+		GuiControl, 1:, OutPut, Fight Begin
+		PixelGetColor, x2, 115, 270
+		while x2 = 0x000000
+		{
+			GuiControl, 1:, OutPut, Move Loop
+			sleep 3000
+			gosub Talk_SpAtk
+			sleep 3000
+			GuiControl, 1:, OutPut, Move Used: Atk Sleep End
+			sleep 2000
+			PixelGetColor, x2, 115, 270
+		}
+		GuiControl, 1:, OutPut, Fight End
+		sleep 1000
+		return
+	}
+
+	Battle_SpAtk:
+	{ 
+		GuiControl, 1:, OutPut, Battle Start 
+		sleep 3000
+		Loop 5
+		{
+			GuiControl, 1:, OutPut, CombatUI Scan
+			sleep 1000
+			ImageSearch, FoundX, FoundY, 150, 140, 1280, 600, *90 %Img_Path_SpAtk%p.png
+			If ErrorLevel = 1
+			{
+				GuiControl, 1:, OutPut, No Battle Found
+				sleep 3000
+			} else if ErrorLevel = 0 
+			{
+				GuiControl, 1:, OutPut, Fight
+				sleep 1000
+				gosub Fight_SpAtk
+				break
+			}
+		}
+		sleep 2000 ;ALAKAZAM modify end conditions
+		GuiControl, 1:, OutPut, Battle Over
+		sleep 1000
+		return
+	}
+	
 	return
 }
 
