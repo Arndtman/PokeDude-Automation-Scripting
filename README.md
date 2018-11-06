@@ -16,6 +16,9 @@ Included in this suite:
     
 3. 90% AFKable NPC GOLD FARM ROUTES
     + OLDMANFARM1 ~40k per route
+    
+4. 100% AFKable Poke Specific Catcher 
+    +Any poke specified 
       
 
 # DON'T BE A DICK PUBLIC LICENSE
