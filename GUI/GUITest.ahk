@@ -297,8 +297,8 @@ SpdEVTrainer:
 		sleep 2000
 		send {Down up}
 		GuiControl, 1:, OutPut, Healed
+		return
 	}
-	return
 
 	FlyIsle7:
 	{
@@ -633,10 +633,305 @@ The script will surely fail if these conditions are not met.
 */
 
 HPEVTrainer: 
-{
+{	
+	Img_Path_Hp = %A_WorkingDir%\Images\EV\
+
 	Gui, Submit, NoHide
 	sleep 500
-	WinActivate, PokeMMO
+		
 	GuiControl, 1:, OutPut, "HP Scripts Missing"
-	return
+	sleep 3000
+	gosub HpPath
+	;return
+	
+
+Counter = 4
+	SS_Hp: 
+	{
+		GuiControl, 1:, OutPut, Sweet Scent Start
+		Loop
+		{
+			if Counter > 0 
+			{ 
+				GuiControl, 1:, OutPut, SS uses left %Counter%
+				sleep 1000
+				GuiControl, 1:, OutPut, Checking Battle State
+				sleep 1000
+				ImageSearch, FoundX, FoundY, 150, 140, 1280, 600, *90 %Img_Path_Hp%p.png
+				if ErrorLevel = 0
+				{
+					gosub Battle_Hp
+				}
+				GuiControl, 1:, OutPut, Out of Battle
+				sleep 1000
+				ImageSearch, FoundX, FoundY, 1150, 250, 1290, 600, *90 %Img_Path_Hp%bs.png 
+				If ErrorLevel = 1
+				{
+					GuiControl, 1:, OutPut, No BellSprout found
+					sleep 1000
+				} else if ErrorLevel = 0 
+				{
+					GuiControl, 1:, OutPut, BellSprout Found
+					sleep 1000
+					mouseclick, left, %FoundX%, %FoundY%, 1, 0
+					ImageSearch, FoundX, FoundY, 1000, 250, 1290, 800, *90 %Img_Path_Hp%ss.png
+					If ErrorLevel = 1
+					{
+						GuiControl, 1:, OutPut, SS FAIL
+						Counter += 1
+						sleep 1000
+					} else if ErrorLevel = 0 
+					{
+						GuiControl, 1:, OutPut, SS OK
+						mouseclick, left, %FoundX%, %FoundY%, 1, 0
+						sleep 1000
+						send {Z down}
+						sleep 100
+						send {Z up}  
+						sleep 3000
+						GuiControl, 1:, OutPut, Entering Battle
+						sleep 300
+						gosub Battle_Hp
+					}
+				}
+				Counter -= 1
+			} else {
+				GuiControl, 1:, OutPut, SS out of PP: Healing
+				Counter = 4
+				sleep 1000
+				gosub FlyIsle3
+				sleep 4000
+				gosub HealIsle3
+				sleep 2000
+				goSub HpPath
+			}
+		}
+		return
+	}
+
+
+	HealIsle3: 
+	{
+		GuiControl, 1:, OutPut, Healing at PC
+		send {UP down} 
+		sleep 3000
+		send {UP up}
+		GuiControl, 1:, OutPut, Heal: Phase 1
+		loop 9{
+			send {Z down}
+			sleep 100
+			send {Z up} 
+		}
+		GuiControl, 1:, OutPut, Heal: Phase 2
+		sleep 1000
+		loop 6{
+			send {Z down}
+			sleep 100
+			send {Z up} 
+		}
+		sleep 2000
+		GuiControl, 1:, OutPut, Heal: Phase 3
+		loop 4{
+			sleep 100
+			send {Z down}
+			sleep 100
+			send {Z up} 
+		}
+		sleep 2000
+		GuiControl, 1:, OutPut, Heal: Phase 4
+		sleep 1000
+		send {Down down} 
+		sleep 2000
+		send {Down up}
+		GuiControl, 1:, OutPut, Healed
+		return
+	}
+
+
+	FlyIsle3:
+	{
+		send {F1 down}
+		sleep 300
+		send {F1 up} 
+		sleep 1000
+
+		Loop { 
+			GuiControl, 1:, OutPut, LF Isle3
+			sleep 1000
+			ImageSearch, FoundX, FoundY, 150, 140, 1280, 800, *90 %Img_Path_Hp%flyIsle3.png
+			If ErrorLevel = 1
+			{
+				GuiControl, 1:, OutPut, No Fly Found. Looking again
+				sleep 3000
+			} else if ErrorLevel = 0 
+			{
+				GuiControl, 1:, OutPut, Fly Found
+				sleep 1000
+				mX := FoundX + 10 
+				mY := FoundY +10
+				mouseMove, %FoundX%, %FoundY%, 20
+				mouseMove, -8, 0, 20, R
+				mouseClick, left
+				sleep 2000
+				
+				FlySub1Hp:
+				ImageSearch, FoundX, FoundY, 300, 200, 1280, 800, *90 %Img_Path_Hp%chat.png
+				If ErrorLevel = 1
+				{
+					GuiControl, 1:, OutPut, No Chat Found
+					sleep 3000
+					gosub FlySub1Hp
+				} else if ErrorLevel = 0 
+				{
+					GuiControl, 1:, OutPut, Chat Found
+					sleep 1000
+					mouseclick, left, %FoundX%, %FoundY%, 1, 0
+				}
+				return
+			}
+		}
+		return
+	}
+
+	Talk_Hp:
+	{
+		sleep 100
+		Loop 7
+		{
+			send {Z down}
+			sleep 300
+			send {Z up}
+		}
+		sleep 100
+		return
+	}
+
+	Fight_Hp:
+	{
+		GuiControl, 1:, OutPut, Fight Begin
+		PixelGetColor, x2, 115, 270
+		while x2 = 0x000000
+		{
+			GuiControl, 1:, OutPut, Move Loop
+			sleep 3000
+			gosub Talk_Hp
+			sleep 3000
+			GuiControl, 1:, OutPut, Move Used: Atk Sleep End
+			sleep 2000
+			PixelGetColor, x2, 115, 270
+		}
+		GuiControl, 1:, OutPut, Fight End
+		sleep 1000
+		return
+	}
+
+	Battle_Hp:
+	{ 
+		GuiControl, 1:, OutPut, Battle Start 
+		sleep 3000
+		Loop 5
+		{
+			GuiControl, 1:, OutPut, CombatUI Scan
+			sleep 1000
+			ImageSearch, FoundX, FoundY, 150, 140, 1280, 600, *90 %Img_Path_Hp%p.png
+			If ErrorLevel = 1
+			{
+				GuiControl, 1:, OutPut, No Battle Found
+				sleep 3000
+			} else if ErrorLevel = 0 
+			{
+				GuiControl, 1:, OutPut, Fight
+				sleep 1000
+				gosub Fight_Hp
+				break
+			}
+		}
+		sleep 2000 ;ALAKAZAM modify end conditions
+		GuiControl, 1:, OutPut, Battle Over
+		sleep 1000
+		return
+	}
+
+
+	HpPath: 
+	{
+		WinActivate, PokeMMO
+		Counter = 4
+		GuiControl, 1:, OutPut, Starting Isle3 HP EV Farm
+		sleep 500
+		send {Down down} 
+		sleep 1000
+		send {Down up} 
+		sleep 300
+
+		send {Left down} 
+		sleep 500
+		send {Left up}
+		sleep 300
+
+		send {Down down} 
+		sleep 2300
+		send {Down up} 
+		sleep 300
+
+		send {Right down} 
+		sleep 800
+		send {Right up}
+		sleep 300
+
+		send {Right down} 
+		sleep 100
+		send {Right up}
+		sleep 300
+
+		send {Up down} 
+		sleep 1500
+		send {Up up}
+		sleep 300
+
+		send {Up down} 
+		sleep 300
+		send {Up up}
+		sleep 300
+
+		send {F2 down}{F2 up} 
+		sleep 200
+
+		send {Right down} 
+		sleep 1800
+		send {Right up}
+		sleep 300
+
+		send {Up down} 
+		sleep 800
+		send {Up up}
+		sleep 300
+
+		send {Right down} 
+		sleep 1000
+		send {Right up}
+		sleep 300
+
+		send {Down down} 
+		sleep 80	0
+		send {Down up} 
+		sleep 300
+
+		send {Left down} 
+		sleep 100
+		send {Left up}
+		sleep 300	
+
+		send {Left down} 
+		sleep 800
+		send {Left up}
+		sleep 300	
+
+		send {F2 down}{F2 up} 
+		sleep 200
+
+		gosub SS_Hp
+	}
+	
+	return 
 }
