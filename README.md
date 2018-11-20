@@ -9,17 +9,21 @@ Included in this suite:
     + 252 MAXED Speed stats 
     + 252 MAXED HP stats 
     + 252 MAXED Sp. Atk stats
+    + Infinite Hordes via Leppa Berry
     + more soon....
     
 2. 100% AFKable combat/leveling bot! 
     + Any zone or mob desired 
     
-3. 90% AFKable NPC GOLD FARM ROUTES
+3. 90% AFKable NPC GOLD FARM ROUTES *Disabled due to ingame hotfixes
     + OLDMANFARM1 ~40k per route
     
 4. 100% AFKable Poke Specific Catcher 
     + Any poke specified 
       
+      
+![alt text](https://raw.githubusercontent.com/Arndtman/PokeDude-Automation-Scripting/main/GUI/Images/GUIDemo.PNG)
+
 
 # DON'T BE A DICK PUBLIC LICENSE
 Source: http://dbad-license.org/
