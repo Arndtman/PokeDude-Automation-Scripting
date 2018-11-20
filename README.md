@@ -15,7 +15,7 @@ Included in this suite:
 2. 100% AFKable combat/leveling bot! 
     + Any zone or mob desired 
     
-3. 90% AFKable NPC GOLD FARM ROUTES *Disabled due to ingame hotfixes
+3. 90% AFKable NPC GOLD FARM ROUTES **Disabled due to ingame hotfixes
     + OLDMANFARM1 ~40k per route
     
 4. 100% AFKable Poke Specific Catcher 
