@@ -20,9 +20,9 @@ Gui 1:Add, Button, w110 y+10 gHPInst, HP EV Trainer
 
 ;Column 2
 Gui 1:Add, Button, w110 xp+120 y+-115 gCombatInst, Combat Bot
-Gui 1:Add, Button, w110 y+10 gHPInst, Def EV Trainer
-Gui 1:Add, Button, w110 y+10 gHPInst, Sp. Def EV Trainer
-Gui 1:Add, Button, w110 y+10 gHPInst, Atk EV Trainer
+Gui 1:Add, Button, w110 y+10 gHordeHandle, Horde EV Trainer ++
+;Gui 1:Add, Button, w110 y+10 gHPInst, Sp. Def EV Trainer
+;Gui 1:Add, Button, w110 y+10 gHPInst, Atk EV Trainer
 
 Gui, Font, s10, Verdana
 Gui 1:Add, Text, x10 y170 , What is the Bot Doing?:
@@ -47,7 +47,7 @@ GuiClose:
 ExitApp
 
 Quitter:
-GuiControl, 1:, OutPut, "Exited Window"
+GuiControl, 1:, OutPut, "Closed a window"
 sleep 300
 Gui, Destroy
 return
@@ -69,16 +69,15 @@ return
 
 B1Inst:
 Gui, Submit, NoHide
-MsgBox "Bot will not work without the following requirements"
-MsgBox "1) the place 2) the thing 3) generic filler"
+MsgBox "Disabled due to game hotfixes, may return"
+;MsgBox "1) the place 2) the thing 3) generic filler"
 return
 
 CombatInst:
 Gui, Submit, NoHide
-MsgBox This is the Universal Combat Bot. It fights for you whenever you enter combat automatically.
-+ Press Ok to Start
+MsgBox This is the Universal Smart Combat Bot filler. 
 
-GuiControl, 1:, OutPut, "in combat bot"
+GuiControl, 1:, OutPut, "in combat bot testing"
 
 return
 
@@ -109,7 +108,7 @@ SpdEVHandle(){
 	Gui 2:Add, Picture, x0 y0 w350 h250, %Img_Path%SpdEVInst.png
 	Gui 2:Add, Button, x0 y250 w80 gSpdStarter, Start_Bot ()
 	Gui 2:Add, Button, x+10 y250 w50 gQuitter, Exit ()
-	Gui 	2:Color, FFA500
+	Gui 2:Color, FFA500
 	Gui 2:Show, x%width% y%height%, Spd EV Instructions
 return
 }
@@ -146,6 +145,33 @@ HPEVHandle(){
 return
 }
 
+
+HordeHandle(){
+	global Img_Path
+	Gui, 2:destroy
+
+	GuiControl, 1:, OutPut, Horde EV Trainer Selected
+	height := A_ScreenHeight-500
+	width := A_ScreenWidth-500
+	
+	Gui 2:Font, s12, Verdana
+	Gui 2:Add, Text, x5, Horde EV Requirements:
+	
+	Gui 2:Font, s9, Verdana
+	Gui 2:Add, Text, x10, 1)Bellsprout with Sweet Scent in Party 
+	Gui 2:Add, Text, x10, 2)First poke has AOE in MOVE1 that 1 shots horde
+	Gui 2:Add, Text, x10, 3)HM02 Fly in Party 
+	Gui 2:Add, Text, x10, 4)10+ Leppa Berry in Bag (runs until out of Leppa)
+	Gui 2:Add, Text, x10, 5)Start bot when at desired bush location
+	
+	
+	
+	Gui 2:Add, Button, x0 y250 w80 gSAtkStarter, Start_Bot ()
+	Gui 2:Add, Button, x+10 y250 w50 gQuitter, Exit ()
+	Gui 2:Color, FFA500
+	Gui 2:Show, x%width% y%height%, Horde EV Instructions
+return
+}
 
 testerino(){
 	GuiControl,, OutPut, "GGGG"
@@ -262,7 +288,7 @@ SpdEVTrainer:
 		}
 		return
 	}
-    Q::
+    
 	HealIsle7: 
 	{
 		GuiControl, 1:, OutPut, Healing at PC
@@ -428,7 +454,7 @@ SpAtkEVTrainer:
 	sleep 500
 	
 	WinActivate, PokeMMO
-	GuiControl, 1:, OutPut, "Sp, Atk Scripts Testing: Set PokeMMO as Main Window Now (3 sec..)"
+	GuiControl, 1:, OutPut, "EV Scripts Testing: Set PokeMMO as Main Window Now (3 sec..)"
 	sleep 3000
 	
 	Counter = 4
